@@ -1,16 +1,19 @@
-rm -rf /tmp/releasebot
-mkdir -p /tmp/releasebot
-cd /tmp/releasebot
-git clone https://github.com/opticdev/optic
-cd optic
-git checkout develop
-git checkout -b releasebot/staged-release-$1
-yarn install
-yarn run bump $1
-git config --local user.email "tech@useoptic.com"
-git config --local user.name "Release Bot"
-git add -A
-git commit -m "bumped to $1"
-git remote set-url trulyronak https://trulyronak:$GH_PERSONAL_ACCESS_TOKEN@github.com/trulyronak/optic.git
-# git push trulyronak releasebot/staged-release-$1
-# hub pull-request
+rm -rf /tmp/releasebot > /dev/null 2>&1
+mkdir -p /tmp/releasebot > /dev/null 2>&1
+cd /tmp/releasebot > /dev/null 2>&1
+git clone https://github.com/opticdev/optic > /dev/null 2>&1
+cd optic > /dev/null 2>&1
+git checkout develop > /dev/null 2>&1
+git checkout -b releasebot/staged-release-$1 > /dev/null 2>&1
+yarn install > /dev/null 2>&1
+yarn run bump $1 > /dev/null 2>&1
+git config --local user.email "tech@useoptic.com" > /dev/null 2>&1
+git config --local user.name "Release Bot" > /dev/null 2>&1
+git add -A > /dev/null 2>&1
+git commit -m "bumped to $1" > /dev/null 2>&1
+git remote remove origin > /dev/null 2>&1
+git remote add trulyronak https://github.com/trulyronak/optic > /dev/null 2>&1 # only for testing
+git pull trulyronak > /dev/null 2>&1 # only for testing
+git remote set-url trulyronak https://trulyronak:$GH_PERSONAL_ACCESS_TOKEN@github.com/trulyronak/optic.git > /dev/null 2>&1 # only for testing
+git push trulyronak releasebot/staged-release-$1 > /dev/null 2>&1
+hub pull-request --no-edit -b release

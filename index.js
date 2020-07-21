@@ -35,12 +35,13 @@ app.post("/slack", async (req, res) => {
         // run script
         const {stdout} = await execa("bash", ["script.sh", version])
 
+
         axios({
             method: 'post',
             url: responseUrl,
             data: {
                 "response_type" : "in_channel",
-                "text" : `released ${version}! ${stdout}`
+                "text" : `bumped to ${version} - authorize the PR @ ${stdout}`
             }
         })
     }
