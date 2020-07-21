@@ -17,6 +17,7 @@ function isValid(string) {
 
 app.post("/slack", async (req, res) => {
     const arguments = req.body.text;
+    console.log(`received request for ${arguments}`)
     if (arguments === "install") {
         res.send(`Install the app @ ${req.protocol}://${req.get('host')}/install`)
         return;
@@ -45,13 +46,6 @@ app.post("/slack", async (req, res) => {
             }
         })
     }
-})
-
-// setup github configuration
-
-app.get("/install", (req, res) => {
-    const github = new GitHub({ client_id: process.env.GH_CLIENT_ID, client_secret: process.env.GH_CLIENT_SECRET });
-    res.redirect(github.authorization_url("repo"));
 })
 
 app.get("/", (req, res) => {
