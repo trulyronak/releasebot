@@ -18,4 +18,4 @@ git remote add trulyronak https://github.com/trulyronak/optic  # only for testin
 git pull trulyronak  # only for testing
 git remote set-url trulyronak https://trulyronak:$GH_PERSONAL_ACCESS_TOKEN@github.com/trulyronak/optic.git  # only for testing
 git push trulyronak releasebot/staged-release-$1 
-$HUB_EXEC pull-request --no-edit -b release
+$HUB_EXEC pull-request -m "Release $1" -b release
