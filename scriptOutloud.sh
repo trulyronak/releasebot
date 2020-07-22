@@ -7,8 +7,8 @@ git clone https://github.com/opticdev/optic
 cd optic 
 git checkout develop 
 git checkout -b releasebot/staged-release-$1 
-npm install 
-npm run bump $1 
+yarn install 
+yarn run bump $1 
 git config --local user.email "tech@useoptic.com" 
 git config --local user.name "Release Bot" 
 git add -A 
