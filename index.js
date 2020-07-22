@@ -52,4 +52,4 @@ app.get("/", (req, res) => {
     res.send("get :O")
 })
 
-http.createServer(app).listen(4000)
+http.createServer(app).listen(process.env.OPTIC_API_PORT || process.env.PORT || 4000)
