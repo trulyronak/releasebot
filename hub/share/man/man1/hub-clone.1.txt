@@ -1,0 +1,37 @@
+hub-clone(1)			       hub manual			   hub-clone(1)
+
+
+
+NAME
+       hub-clone - Clone a repository from GitHub.
+
+SYNOPSIS
+       hub clone [-p] [OPTIONS] [USER/]REPOSITORY [DESTINATION]
+
+OPTIONS
+       -p
+	   (Deprecated) Clone private repositories over SSH.
+
+       [USER/]REPOSITORY
+	   USER defaults to your own GitHub username.
+
+       DESTINATION
+	   Directory name to clone into (default: REPOSITORY).
+
+PROTOCOL USED FOR CLONING
+       The git: protocol will be used for cloning public repositories, while the SSH
+       protocol will be used for private repositories and those that you have push
+       access to. Alternatively, hub can be configured to use HTTPS protocol for
+       everything. See "HTTPS instead of git protocol" and "HUB_PROTOCOL" of hub(1).
+
+EXAMPLES
+	   $ hub clone rtomayko/ronn
+	   > git clone git://github.com/rtomayko/ronn.git
+
+SEE ALSO
+       hub-fork(1), hub(1), git-clone(1)
+
+
+
+
+hub version 2.14.2		      05 Mar 2020			   hub-clone(1)

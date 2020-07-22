@@ -1,0 +1,26 @@
+hub-help(1)			       hub manual			    hub-help(1)
+
+
+
+NAME
+       hub-help - Show the help page for a command.
+
+SYNOPSIS
+       hub help hub
+       hub help COMMAND
+       hub help hub-COMMAND [--plain-text]
+
+OPTIONS
+       hub-COMMAND
+	   Use this format to view help for hub extensions to an existing git command.
+
+       --plain-text
+	   Skip man page lookup mechanism and display raw help text.
+
+SEE ALSO
+       hub(1), git-help(1)
+
+
+
+
+hub version 2.14.2		      05 Mar 2020			    hub-help(1)

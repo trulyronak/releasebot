@@ -1,0 +1,136 @@
+<!doctype html>
+<title>hub-gist(1) - Create and print GitHub Gists</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub-gist(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub-gist(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>Create and print GitHub Gists</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub gist</code> create [-oc] [--public] [<var>FILES</var>...]<br>
+<code>hub gist</code> show <var>ID</var> [<var>FILENAME</var>]</p>
+
+<h2 id="commands">Commands</h2>
+
+<dl>
+<dt><em>create</em></dt>
+<dd>Create a new gist. If no <var>FILES</var> are specified, the content is read from
+standard input.</dd>
+<dt><em>show</em></dt>
+<dd>Print the contents of a gist. If the gist contains multiple files, the
+operation will error out unless <var>FILENAME</var> is specified.</dd>
+</dl>
+
+<h2 id="options">Options</h2>
+
+<dl>
+<dt>--public</dt>
+<dd>Make the new gist public (default: false).</dd>
+<dt>-o, --browse</dt>
+<dd>Open the new gist in a web browser.</dd>
+<dt>-c, --copy</dt>
+<dd>Put the URL of the new gist to clipboard instead of printing it.</dd>
+</dl>
+
+<h2 id="examples">Examples</h2>
+
+<pre><code>$ echo hello | hub gist create --public
+
+$ hub gist create file1.txt file2.txt
+
+# print a specific file within a gist:
+$ hub gist show ID testfile1.txt
+</code></pre>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="./hub.1.html">hub(1)</a>, <a href="./hub-api.1.html">hub-api(1)</a></p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

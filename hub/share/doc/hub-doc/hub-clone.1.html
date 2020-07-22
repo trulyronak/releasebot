@@ -1,0 +1,127 @@
+<!doctype html>
+<title>hub-clone(1) - Clone a repository from GitHub.</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub-clone(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub-clone(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>Clone a repository from GitHub.</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub clone</code> [-p] [<var>OPTIONS</var>] [<var>USER</var>/]<var>REPOSITORY</var> [<var>DESTINATION</var>]</p>
+
+<h2 id="options">Options</h2>
+
+<dl>
+<dt>-p</dt>
+<dd>(Deprecated) Clone private repositories over SSH.</dd>
+<dt>[<var>USER</var>/]<var>REPOSITORY</var></dt>
+<dd><var>USER</var> defaults to your own GitHub username.</dd>
+<dt><var>DESTINATION</var></dt>
+<dd>Directory name to clone into (default: <var>REPOSITORY</var>).</dd>
+</dl>
+
+<h2 id="protocol-used-for-cloning">Protocol used for cloning</h2>
+
+<p>The <code>git:</code> protocol will be used for cloning public repositories, while the SSH
+protocol will be used for private repositories and those that you have push
+access to. Alternatively, hub can be configured to use HTTPS protocol for
+everything. See &quot;HTTPS instead of git protocol&quot; and &quot;HUB_PROTOCOL&quot; of <a href="./hub.1.html">hub(1)</a>.</p>
+
+<h2 id="examples">Examples</h2>
+
+<pre><code>$ hub clone rtomayko/ronn
+&gt; git clone git://github.com/rtomayko/ronn.git
+</code></pre>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="./hub-fork.1.html">hub-fork(1)</a>, <a href="./hub.1.html">hub(1)</a>, git-clone(1)</p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

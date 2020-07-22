@@ -1,0 +1,135 @@
+<!doctype html>
+<title>hub-ci-status(1) - Display status of GitHub checks for a commit.</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub-ci-status(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub-ci-status(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>Display status of GitHub checks for a commit.</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub ci-status</code> [-v] [<var>COMMIT</var>]</p>
+
+<h2 id="options">Options</h2>
+
+<dl>
+<dt>-v, --verbose</dt>
+<dd><p>Print detailed report of all status checks and their URLs.</p></dd>
+<dt>-f, --format <var>FORMAT</var></dt>
+<dd><p>Pretty print all status checks using <var>FORMAT</var> (implies <code>--verbose</code>). See the
+&quot;PRETTY FORMATS&quot; section of git-log(1) for some additional details on how
+placeholders are used in format. The available placeholders for checks are:</p>
+
+<p>%U: the URL of this status check</p>
+
+<p>%S: check state (e.g. &quot;success&quot;, &quot;failure&quot;)</p>
+
+<p>%sC: set color to red, green, or yellow, depending on state</p>
+
+<p>%t: name of the status check</p></dd>
+<dt>--color[=<var>WHEN</var>]</dt>
+<dd><p>Enable colored output even if stdout is not a terminal. <var>WHEN</var> can be one
+of &quot;always&quot; (default for <code>--color</code>), &quot;never&quot;, or &quot;auto&quot; (default).</p></dd>
+<dt><var>COMMIT</var></dt>
+<dd><p>A commit SHA or branch name (default: &quot;HEAD&quot;).</p></dd>
+</dl>
+
+<p>Possible outputs and exit statuses:</p>
+
+<ul>
+<li>success, neutral: 0</li>
+<li>failure, error, action_required, cancelled, timed_out: 1</li>
+<li>pending: 2</li>
+</ul>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="./hub-pull-request.1.html">hub-pull-request(1)</a>, <a href="./hub.1.html">hub(1)</a></p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

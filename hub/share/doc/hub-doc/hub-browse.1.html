@@ -1,0 +1,131 @@
+<!doctype html>
+<title>hub-browse(1) - Open a GitHub repository in a web browser.</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub-browse(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub-browse(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>Open a GitHub repository in a web browser.</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub browse</code> [-uc] [[<var>USER</var>/]<var>REPOSITORY</var>|--] [<var>SUBPAGE</var>]</p>
+
+<h2 id="options">Options</h2>
+
+<dl>
+<dt>-u, --url</dt>
+<dd>Print the URL instead of opening it.</dd>
+<dt>-c, --copy</dt>
+<dd>Put the URL in clipboard instead of opening it.</dd>
+<dt>[<var>USER</var>/]<var>REPOSITORY</var></dt>
+<dd>Defaults to repository in the current working directory.</dd>
+<dt><var>SUBPAGE</var></dt>
+<dd>One of &quot;wiki&quot;, &quot;commits&quot;, &quot;issues&quot;, or other (default: &quot;tree&quot;).</dd>
+</dl>
+
+<h2 id="examples">Examples</h2>
+
+<pre><code>$ hub browse
+&gt; open https://github.com/REPO
+
+$ hub browse -- issues
+&gt; open https://github.com/REPO/issues
+
+$ hub browse jingweno/gh
+&gt; open https://github.com/jingweno/gh
+
+$ hub browse gh wiki
+&gt; open https://github.com/USER/gh/wiki
+</code></pre>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="./hub-compare.1.html">hub-compare(1)</a>, <a href="./hub.1.html">hub(1)</a></p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

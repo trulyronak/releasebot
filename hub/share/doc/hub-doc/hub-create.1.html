@@ -1,0 +1,137 @@
+<!doctype html>
+<title>hub-create(1) - Create a new repository on GitHub and add a git remote for it.</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub-create(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub-create(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>Create a new repository on GitHub and add a git remote for it.</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub create</code> [-poc] [-d <var>DESCRIPTION</var>] [-h <var>HOMEPAGE</var>] [[<var>ORGANIZATION</var>/]<var>NAME</var>]</p>
+
+<h2 id="options">Options</h2>
+
+<dl>
+<dt>-p, --private</dt>
+<dd><p>Create a private repository.</p></dd>
+<dt>-d, --description <var>DESCRIPTION</var></dt>
+<dd><p>A short description of the GitHub repository.</p></dd>
+<dt>-h, --homepage <var>HOMEPAGE</var></dt>
+<dd><p>A URL with more information about the repository. Use this, for example, if
+your project has an external website.</p></dd>
+<dt>--remote-name <var>REMOTE</var></dt>
+<dd><p>Set the name for the new git remote (default: &quot;origin&quot;).</p></dd>
+<dt>-o, --browse</dt>
+<dd><p>Open the new repository in a web browser.</p></dd>
+<dt>-c, --copy</dt>
+<dd><p>Put the URL of the new repository to clipboard instead of printing it.</p></dd>
+<dt>[<var>ORGANIZATION</var>/]<var>NAME</var></dt>
+<dd><p>The name for the repository on GitHub (default: name of the current working
+directory).</p>
+
+<p>Optionally, create the repository within <var>ORGANIZATION</var>.</p></dd>
+</dl>
+
+<h2 id="examples">Examples</h2>
+
+<pre><code>$ hub create
+[ repo created on GitHub ]
+&gt; git remote add -f origin git@github.com:USER/REPO.git
+
+$ hub create sinatra/recipes
+[ repo created in GitHub organization ]
+&gt; git remote add -f origin git@github.com:sinatra/recipes.git
+</code></pre>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="./hub-init.1.html">hub-init(1)</a>, <a href="./hub.1.html">hub(1)</a></p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

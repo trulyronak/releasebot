@@ -1,0 +1,195 @@
+<!doctype html>
+<title>hub-pull-request(1) - Create a GitHub Pull Request.</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub-pull-request(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub-pull-request(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>Create a GitHub Pull Request.</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub pull-request</code> [-focpd] [-b <var>BASE</var>] [-h <var>HEAD</var>] [-r <var>REVIEWERS</var> ] [-a <var>ASSIGNEES</var>] [-M <var>MILESTONE</var>] [-l <var>LABELS</var>]<br>
+<code>hub pull-request</code> -m <var>MESSAGE</var> [--edit]<br>
+<code>hub pull-request</code> -F <var>FILE</var> [--edit]<br>
+<code>hub pull-request</code> -i <var>ISSUE</var></p>
+
+<h2 id="options">Options</h2>
+
+<dl>
+<dt>-f, --force</dt>
+<dd><p>Skip the check for unpushed commits.</p></dd>
+<dt>-m, --message <var>MESSAGE</var></dt>
+<dd><p>The text up to the first blank line in <var>MESSAGE</var> is treated as the pull
+request title, and the rest is used as pull request description in Markdown
+format.</p>
+
+<p>When multiple <code>--message</code> are passed, their values are concatenated with a
+blank line in-between.</p>
+
+<p>When neither <code>--message</code> nor <code>--file</code> were supplied, a text editor will open
+to author the title and description in.</p></dd>
+<dt>--no-edit</dt>
+<dd><p>Use the message from the first commit on the branch as pull request title
+and description without opening a text editor.</p></dd>
+<dt>-F, --file <var>FILE</var></dt>
+<dd><p>Read the pull request title and description from <var>FILE</var>. Pass &quot;-&quot; to read
+from standard input instead. See <code>--message</code> for the formatting rules.</p></dd>
+<dt>-e, --edit</dt>
+<dd><p>Open the pull request title and description in a text editor before
+submitting. This can be used in combination with <code>--message</code> or <code>--file</code>.</p></dd>
+<dt>-i, --issue <var>ISSUE</var></dt>
+<dd><p>Convert <var>ISSUE</var> (referenced by its number) to a pull request.</p>
+
+<p>You can only convert issues authored by you or that which you have admin
+rights over. In most workflows it is not necessary to convert issues to
+pull requests; you can simply reference the original issue in the body of
+the new pull request.</p></dd>
+<dt>-o, --browse</dt>
+<dd><p>Open the new pull request in a web browser.</p></dd>
+<dt>-c, --copy</dt>
+<dd><p>Put the URL of the new pull request to clipboard instead of printing it.</p></dd>
+<dt>-p, --push</dt>
+<dd><p>Push the current branch to <var>HEAD</var> before creating the pull request.</p></dd>
+<dt>-b, --base <var>BASE</var></dt>
+<dd><p>The base branch in the &quot;[<var>OWNER</var>:]<var>BRANCH</var>&quot; format. Defaults to the default
+branch of the upstream repository (usually &quot;master&quot;).</p>
+
+<p>See the &quot;CONVENTIONS&quot; section of <a href="./hub.1.html">hub(1)</a> for more information on how hub
+selects the defaults in case of multiple git remotes.</p></dd>
+<dt>-h, --head <var>HEAD</var></dt>
+<dd><p>The head branch in &quot;[<var>OWNER</var>:]<var>BRANCH</var>&quot; format. Defaults to the currently
+checked out branch.</p></dd>
+<dt>-r, --reviewer <var>USERS</var></dt>
+<dd><p>A comma-separated list (no spaces around the comma) of GitHub handles to
+request a review from.</p></dd>
+<dt>-a, --assign <var>USERS</var></dt>
+<dd><p>A comma-separated list (no spaces around the comma) of GitHub handles to
+assign to this pull request.</p></dd>
+<dt>-M, --milestone <var>NAME</var></dt>
+<dd><p>The milestone name to add to this pull request. Passing the milestone number
+is deprecated.</p></dd>
+<dt>-l, --labels <var>LABELS</var></dt>
+<dd><p>A comma-separated list (no spaces around the comma) of labels to add to
+this pull request. Labels will be created if they do not already exist.</p></dd>
+<dt>-d, --draft</dt>
+<dd><p>Create the pull request as a draft.</p></dd>
+<dt>--no-maintainer-edits</dt>
+<dd><p>When creating a pull request from a fork, this disallows projects
+maintainers from being able to push to the head branch of this fork.
+Maintainer edits are allowed by default.</p></dd>
+</dl>
+
+<h2 id="examples">Examples</h2>
+
+<pre><code>$ hub pull-request
+[ opens a text editor for writing title and message ]
+[ creates a pull request for the current branch ]
+
+$ hub pull-request --base OWNER:master --head MYUSER:my-branch
+[ creates a pull request with explicit base and head branches ]
+
+$ hub pull-request --browse -m &quot;My title&quot;
+[ creates a pull request with the given title and opens it in a browser ]
+
+$ hub pull-request -F - --edit &lt; path/to/message-template.md
+[ further edit the title and message received on standard input ]
+</code></pre>
+
+<h2 id="configuration">Configuration</h2>
+
+<dl>
+<dt><code>HUB_RETRY_TIMEOUT</code></dt>
+<dd>The maximum time to keep retrying after HTTP 422 on <code>--push</code> (default: 9).</dd>
+</dl>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="./hub.1.html">hub(1)</a>, <a href="./hub-merge.1.html">hub-merge(1)</a>, <a href="./hub-checkout.1.html">hub-checkout(1)</a></p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

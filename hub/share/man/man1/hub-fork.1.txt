@@ -1,0 +1,36 @@
+hub-fork(1)			       hub manual			    hub-fork(1)
+
+
+
+NAME
+       hub-fork - Fork the current repository on GitHub and add a git remote for it.
+
+SYNOPSIS
+       hub fork [--no-remote] [--remote-name REMOTE] [--org ORGANIZATION]
+
+OPTIONS
+       --no-remote
+	   Skip adding a git remote for the fork.
+
+       --remote-name REMOTE
+	   Set the name for the new git remote.
+
+       --org ORGANIZATION
+	   Fork the repository within this organization.
+
+EXAMPLES
+	   $ hub fork
+	   [ repo forked on GitHub ]
+	   > git remote add -f USER git@github.com:USER/REPO.git
+
+	   $ hub fork --org=ORGANIZATION
+	   [ repo forked on GitHub into the ORGANIZATION organization]
+	   > git remote add -f ORGANIZATION git@github.com:ORGANIZATION/REPO.git
+
+SEE ALSO
+       hub-clone(1), hub(1)
+
+
+
+
+hub version 2.14.2		      05 Mar 2020			    hub-fork(1)

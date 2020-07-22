@@ -1,0 +1,28 @@
+hub-merge(1)			       hub manual			   hub-merge(1)
+
+
+
+NAME
+       hub-merge - Merge a pull request locally with a message like the GitHub Merge
+       Button.
+
+SYNOPSIS
+       hub merge PULLREQ-URL
+
+       This creates a local merge commit in the current branch, but does not actually
+       change the state of the pull request. However, the pull request will get
+       auto-closed and marked as "merged" as soon as the newly created merge commit is
+       pushed to the default branch of the remote repository.
+
+EXAMPLES
+	   $ hub merge https://github.com/jingweno/gh/pull/73
+	   > git fetch origin refs/pull/73/head
+	   > git merge FETCH_HEAD --no-ff -m "Merge pull request #73 from jingweno/feature..."
+
+SEE ALSO
+       hub-checkout(1), hub(1), git-merge(1)
+
+
+
+
+hub version 2.14.2		      05 Mar 2020			   hub-merge(1)

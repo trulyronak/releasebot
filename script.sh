@@ -1,3 +1,5 @@
+export HUB_EXEC=$(pwd)/hub/bin/hub
+
 rm -rf /tmp/releasebot > /dev/null 2>&1
 mkdir -p /tmp/releasebot > /dev/null 2>&1
 cd /tmp/releasebot > /dev/null 2>&1
@@ -16,4 +18,4 @@ git remote add trulyronak https://github.com/trulyronak/optic > /dev/null 2>&1 #
 git pull trulyronak > /dev/null 2>&1 # only for testing
 git remote set-url trulyronak https://trulyronak:$GH_PERSONAL_ACCESS_TOKEN@github.com/trulyronak/optic.git > /dev/null 2>&1 # only for testing
 git push trulyronak releasebot/staged-release-$1 > /dev/null 2>&1
-hub pull-request --no-edit -b release
+$HUB_EXEC pull-request --no-edit -b release

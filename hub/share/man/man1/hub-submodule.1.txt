@@ -1,0 +1,21 @@
+hub-submodule(1)		       hub manual		       hub-submodule(1)
+
+
+
+NAME
+       hub-submodule - Add a git submodule for a GitHub repository.
+
+SYNOPSIS
+       hub submodule add [-p] [OPTIONS] [USER/]REPOSITORY DESTINATION
+
+EXAMPLES
+	   $ hub submodule add jingweno/gh vendor/gh
+	   > git submodule add git://github.com/jingweno/gh.git vendor/gh
+
+SEE ALSO
+       hub-remote(1), hub(1), git-submodule(1)
+
+
+
+
+hub version 2.14.2		      05 Mar 2020		       hub-submodule(1)

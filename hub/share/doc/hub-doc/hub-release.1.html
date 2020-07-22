@@ -1,0 +1,227 @@
+<!doctype html>
+<title>hub-release(1) - Manage GitHub Releases for the current repository.</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub-release(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub-release(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>Manage GitHub Releases for the current repository.</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub release</code> [--include-drafts] [--exclude-prereleases] [-L <var>LIMIT</var>] [-f <var>FORMAT</var>]<br>
+<code>hub release</code> show [-f <var>FORMAT</var>] <var>TAG</var><br>
+<code>hub release</code> create [-dpoc] [-a <var>FILE</var>] [-m <var>MESSAGE</var>|-F <var>FILE</var>] [-t <var>TARGET</var>] <var>TAG</var><br>
+<code>hub release</code> edit [<var>options</var>] <var>TAG</var><br>
+<code>hub release</code> download <var>TAG</var> [-i <var>PATTERN</var>]<br>
+<code>hub release</code> delete <var>TAG</var></p>
+
+<h2 id="commands">Commands</h2>
+
+<p>With no arguments, shows a list of existing releases.</p>
+
+<dl>
+<dt><em>show</em></dt>
+<dd><p>Show GitHub release notes for <var>TAG</var>.</p>
+
+<p>With <code>--show-downloads</code>, include the &quot;Downloads&quot; section.</p></dd>
+<dt><em>create</em></dt>
+<dd><p>Create a GitHub release for the specified <var>TAG</var> name. If git tag <var>TAG</var>
+does not exist, it will be created at <var>TARGET</var> (default: current branch).</p></dd>
+<dt><em>edit</em></dt>
+<dd><p>Edit the GitHub release for the specified <var>TAG</var> name. Accepts the same
+options as <em>create</em> command. Publish a draft with <code>--draft=false</code>.</p>
+
+<p>Without <code>--message</code> or <code>--file</code>, a text editor will open pre-populated with
+the current release title and body. To re-use existing title and body
+unchanged, pass <code>-m &quot;&quot;</code>.</p></dd>
+<dt><em>download</em></dt>
+<dd><p>Download the assets attached to release for the specified <var>TAG</var>.</p></dd>
+<dt><em>delete</em></dt>
+<dd><p>Delete the release and associated assets for the specified <var>TAG</var>. Note that
+this does <strong>not</strong> remove the git tag <var>TAG</var>.</p></dd>
+</dl>
+
+<h2 id="options">Options</h2>
+
+<dl>
+<dt>-d, --include-drafts</dt>
+<dd><p>List drafts together with published releases.</p></dd>
+<dt>-p, --exclude-prereleases</dt>
+<dd><p>Exclude prereleases from the list.</p></dd>
+<dt>-L, --limit</dt>
+<dd><p>Display only the first <var>LIMIT</var> releases.</p></dd>
+<dt>-d, --draft</dt>
+<dd><p>Create a draft release.</p></dd>
+<dt>-p, --prerelease</dt>
+<dd><p>Create a pre-release.</p></dd>
+<dt>-a, --attach <var>FILE</var></dt>
+<dd><p>Attach a file as an asset for this release.</p>
+
+<p>If <var>FILE</var> is in the &quot;<var>filename</var>#<var>text</var>&quot; format, the text after the &quot;#&quot;
+character is taken as asset label.</p></dd>
+<dt>-m, --message <var>MESSAGE</var></dt>
+<dd><p>The text up to the first blank line in <var>MESSAGE</var> is treated as the release
+title, and the rest is used as release description in Markdown format.</p>
+
+<p>When multiple <code>--message</code> are passed, their values are concatenated with a
+blank line in-between.</p>
+
+<p>When neither <code>--message</code> nor <code>--file</code> were supplied to <code>release create</code>, a
+text editor will open to author the title and description in.</p></dd>
+<dt>-F, --file <var>FILE</var></dt>
+<dd><p>Read the release title and description from <var>FILE</var>. Pass &quot;-&quot; to read from
+standard input instead. See <code>--message</code> for the formatting rules.</p></dd>
+<dt>-e, --edit</dt>
+<dd><p>Open the release title and description in a text editor before submitting.
+This can be used in combination with <code>--message</code> or <code>--file</code>.</p></dd>
+<dt>-o, --browse</dt>
+<dd><p>Open the new release in a web browser.</p></dd>
+<dt>-c, --copy</dt>
+<dd><p>Put the URL of the new release to clipboard instead of printing it.</p></dd>
+<dt>-t, --commitish <var>TARGET</var></dt>
+<dd><p>A commit SHA or branch name to attach the release to, only used if <var>TAG</var>
+does not already exist (default: main branch).</p></dd>
+<dt>-i, --include <var>PATTERN</var></dt>
+<dd><p>Filter the files in the release to those that match the glob <var>PATTERN</var>.</p></dd>
+<dt>-f, --format <var>FORMAT</var></dt>
+<dd><p>Pretty print releases using <var>FORMAT</var> (default: &quot;%T%n&quot;). See the &quot;PRETTY
+FORMATS&quot; section of git-log(1) for some additional details on how
+placeholders are used in format. The available placeholders for issues are:</p>
+
+<p>%U: the URL of this release</p>
+
+<p>%uT: tarball URL</p>
+
+<p>%uZ: zipball URL</p>
+
+<p>%uA: asset upload URL</p>
+
+<p>%S: state (i.e. &quot;draft&quot;, &quot;pre-release&quot;)</p>
+
+<p>%sC: set color to yellow or red, depending on state</p>
+
+<p>%t: release name</p>
+
+<p>%T: release tag</p>
+
+<p>%b: body</p>
+
+<p>%as: the list of assets attached to this release</p>
+
+<p>%cD: created date-only (no time of day)</p>
+
+<p>%cr: created date, relative</p>
+
+<p>%ct: created date, UNIX timestamp</p>
+
+<p>%cI: created date, ISO 8601 format</p>
+
+<p>%pD: published date-only (no time of day)</p>
+
+<p>%pr: published date, relative</p>
+
+<p>%pt: published date, UNIX timestamp</p>
+
+<p>%pI: published date, ISO 8601 format</p>
+
+<p>%n: newline</p>
+
+<p>%%: a literal %</p></dd>
+<dt>--color[=<var>WHEN</var>]</dt>
+<dd><p>Enable colored output even if stdout is not a terminal. <var>WHEN</var> can be one
+of &quot;always&quot; (default for <code>--color</code>), &quot;never&quot;, or &quot;auto&quot; (default).</p></dd>
+<dt><var>TAG</var></dt>
+<dd><p>The git tag name for this release.</p></dd>
+</dl>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="./hub.1.html">hub(1)</a>, git-tag(1)</p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

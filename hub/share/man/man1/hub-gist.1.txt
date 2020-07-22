@@ -1,0 +1,45 @@
+hub-gist(1)			       hub manual			    hub-gist(1)
+
+
+
+NAME
+       hub-gist - Create and print GitHub Gists
+
+SYNOPSIS
+       hub gist create [-oc] [--public] [FILES...]
+       hub gist show ID [FILENAME]
+
+COMMANDS
+       create
+	   Create a new gist. If no FILES are specified, the content is read from
+	   standard input.
+
+       show
+	   Print the contents of a gist. If the gist contains multiple files, the
+	   operation will error out unless FILENAME is specified.
+
+OPTIONS
+       --public
+	   Make the new gist public (default: false).
+
+       -o, --browse
+	   Open the new gist in a web browser.
+
+       -c, --copy
+	   Put the URL of the new gist to clipboard instead of printing it.
+
+EXAMPLES
+	   $ echo hello | hub gist create --public
+
+	   $ hub gist create file1.txt file2.txt
+
+	   # print a specific file within a gist:
+	   $ hub gist show ID testfile1.txt
+
+SEE ALSO
+       hub(1), hub-api(1)
+
+
+
+
+hub version 2.14.2		      05 Mar 2020			    hub-gist(1)

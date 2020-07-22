@@ -1,0 +1,54 @@
+hub-compare(1)			       hub manual			 hub-compare(1)
+
+
+
+NAME
+       hub-compare - Open a GitHub compare page in a web browser.
+
+SYNOPSIS
+       hub compare [-uc] [-b BASE]
+       hub compare [-uc] [OWNER] [BASE...]HEAD
+
+OPTIONS
+       -u, --url
+	   Print the URL instead of opening it.
+
+       -c, --copy
+	   Put the URL to clipboard instead of opening it.
+
+       -b, --base BASE
+	   Base branch to compare against in case no explicit arguments were given.
+
+       [BASE...]HEAD
+	   Branch names, tag names, or commit SHAs specifying the range to compare.  If
+	   a range with two dots (A..B) is given, it will be transformed into a range
+	   with three dots.
+
+	   The BASE portion defaults to the default branch of the repository.
+
+	   The HEAD argument defaults to the current branch. If the current branch is
+	   not pushed to a remote, the command will error.
+
+       OWNER
+	   Optionally specify the owner of the repository for the compare page URL.
+
+EXAMPLES
+	   $ hub compare
+	   > open https://github.com/OWNER/REPO/compare/BRANCH
+
+	   $ hub compare refactor
+	   > open https://github.com/OWNER/REPO/compare/refactor
+
+	   $ hub compare v1.0..v1.1
+	   > open https://github.com/OWNER/REPO/compare/v1.0...v1.1
+
+	   $ hub compare -u jingweno feature
+	   https://github.com/jingweno/REPO/compare/feature
+
+SEE ALSO
+       hub-browse(1), hub(1)
+
+
+
+
+hub version 2.14.2		      05 Mar 2020			 hub-compare(1)

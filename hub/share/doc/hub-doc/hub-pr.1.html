@@ -1,0 +1,223 @@
+<!doctype html>
+<title>hub-pr(1) - Manage GitHub Pull Requests for the current repository.</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub-pr(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub-pr(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>Manage GitHub Pull Requests for the current repository.</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub pr</code> list [-s <var>STATE</var>] [-h <var>HEAD</var>] [-b <var>BASE</var>] [-o <var>SORT_KEY</var> [<code>-^</code>]] [-f <var>FORMAT</var>] [-L <var>LIMIT</var>]<br>
+<code>hub pr</code> checkout <var>PR-NUMBER</var> [<var>BRANCH</var>]<br>
+<code>hub pr</code> show [-uc] [-f <var>FORMAT</var>] [-h <var>HEAD</var>]<br>
+<code>hub pr</code> show [-uc] [-f <var>FORMAT</var>] <var>PR-NUMBER</var></p>
+
+<h2 id="commands">Commands</h2>
+
+<dl>
+<dt><em>list</em></dt>
+<dd><p>List pull requests in the current repository.</p></dd>
+<dt><em>checkout</em></dt>
+<dd><p>Check out the head of a pull request in a new branch.</p>
+
+<p>To update the pull request with new commits, use <code>git push</code>.</p></dd>
+<dt><em>show</em></dt>
+<dd><p>Open a pull request page in a web browser. When no <var>PR-NUMBER</var> is
+specified, <var>HEAD</var> is used to look up open pull requests and defaults to
+the current branch name. With <code>--format</code>, print information about the
+pull request instead of opening it.</p></dd>
+</dl>
+
+<h2 id="options">Options</h2>
+
+<dl>
+<dt>-s, --state <var>STATE</var></dt>
+<dd><p>Filter pull requests by <var>STATE</var>. Supported values are: &quot;open&quot; (default),
+&quot;closed&quot;, &quot;merged&quot;, or &quot;all&quot;.</p></dd>
+<dt>-h, --head <var>BRANCH</var></dt>
+<dd><p>Show pull requests started from the specified head <var>BRANCH</var>. The
+&quot;OWNER:BRANCH&quot; format must be used for pull requests from forks.</p></dd>
+<dt>-b, --base <var>BRANCH</var></dt>
+<dd><p>Show pull requests based off the specified <var>BRANCH</var>.</p></dd>
+<dt>-f, --format <var>FORMAT</var></dt>
+<dd><p>Pretty print the list of pull requests using format <var>FORMAT</var> (default:
+&quot;%pC%&gt;(8)%i%Creset  %t%  l%n&quot;). See the &quot;PRETTY FORMATS&quot; section of
+git-log(1) for some additional details on how placeholders are used in
+format. The available placeholders are:</p>
+
+<p>%I: pull request number</p>
+
+<p>%i: pull request number prefixed with &quot;#&quot;</p>
+
+<p>%U: the URL of this pull request</p>
+
+<p>%S: state (&quot;open&quot; or &quot;closed&quot;)</p>
+
+<p>%pS: pull request state (&quot;open&quot;, &quot;draft&quot;, &quot;merged&quot;, or &quot;closed&quot;)</p>
+
+<p>%sC: set color to red or green, depending on state</p>
+
+<p>%pC: set color according to pull request state</p>
+
+<p>%t: title</p>
+
+<p>%l: colored labels</p>
+
+<p>%L: raw, comma-separated labels</p>
+
+<p>%b: body</p>
+
+<p>%B: base branch</p>
+
+<p>%sB: base commit SHA</p>
+
+<p>%H: head branch</p>
+
+<p>%sH: head commit SHA</p>
+
+<p>%sm: merge commit SHA</p>
+
+<p>%au: login name of author</p>
+
+<p>%as: comma-separated list of assignees</p>
+
+<p>%rs: comma-separated list of requested reviewers</p>
+
+<p>%Mn: milestone number</p>
+
+<p>%Mt: milestone title</p>
+
+<p>%cD: created date-only (no time of day)</p>
+
+<p>%cr: created date, relative</p>
+
+<p>%ct: created date, UNIX timestamp</p>
+
+<p>%cI: created date, ISO 8601 format</p>
+
+<p>%uD: updated date-only (no time of day)</p>
+
+<p>%ur: updated date, relative</p>
+
+<p>%ut: updated date, UNIX timestamp</p>
+
+<p>%uI: updated date, ISO 8601 format</p>
+
+<p>%mD: merged date-only (no time of day)</p>
+
+<p>%mr: merged date, relative</p>
+
+<p>%mt: merged date, UNIX timestamp</p>
+
+<p>%mI: merged date, ISO 8601 format</p>
+
+<p>%n: newline</p>
+
+<p>%%: a literal %</p></dd>
+<dt>--color[=<var>WHEN</var>]</dt>
+<dd><p>Enable colored output even if stdout is not a terminal. <var>WHEN</var> can be one
+of &quot;always&quot; (default for <code>--color</code>), &quot;never&quot;, or &quot;auto&quot; (default).</p></dd>
+<dt>-o, --sort <var>KEY</var></dt>
+<dd><p>Sort displayed pull requests by &quot;created&quot; (default), &quot;updated&quot;, &quot;popularity&quot;, or &quot;long-running&quot;.</p></dd>
+<dt>-^, --sort-ascending</dt>
+<dd><p>Sort by ascending dates instead of descending.</p></dd>
+<dt>-L, --limit <var>LIMIT</var></dt>
+<dd><p>Display only the first <var>LIMIT</var> pull requests.</p></dd>
+<dt>-u, --url</dt>
+<dd><p>Print the pull request URL instead of opening it.</p></dd>
+<dt>-c, --copy</dt>
+<dd><p>Put the pull request URL to clipboard instead of opening it.</p></dd>
+</dl>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="./hub-issue.1.html">hub-issue(1)</a>, <a href="./hub-pull-request.1.html">hub-pull-request(1)</a>, <a href="./hub.1.html">hub(1)</a></p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

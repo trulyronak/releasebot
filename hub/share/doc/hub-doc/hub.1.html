@@ -1,0 +1,286 @@
+<!doctype html>
+<title>hub(1) - make git easier with GitHub</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>make git easier with GitHub</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub</code> [--noop] <var>COMMAND</var> [<var>OPTIONS</var>]<br>
+<code>hub alias</code> [-s] [<var>SHELL</var>]<br>
+<code>hub help</code> hub-<var>COMMAND</var></p>
+
+<h2 id="description">Description</h2>
+
+<p>Hub is a tool that wraps git in order to extend it with extra functionality that
+makes it better when working with GitHub.</p>
+
+<h2 id="commands">Commands</h2>
+
+<p>Available commands are split into two groups: those that are already present in
+git but that are extended through hub, and custom ones that hub provides.</p>
+
+<h3 id="extended-git-commands">Extended git commands</h3>
+
+<dl>
+<dt><a href="./hub-am.1.html">hub-am(1)</a></dt>
+<dd>Replicate commits from a GitHub pull request locally.</dd>
+<dt><a href="./hub-apply.1.html">hub-apply(1)</a></dt>
+<dd>Download a patch from GitHub and apply it locally.</dd>
+<dt><a href="./hub-checkout.1.html">hub-checkout(1)</a></dt>
+<dd>Check out the head of a pull request as a local branch.</dd>
+<dt><a href="./hub-cherry-pick.1.html">hub-cherry-pick(1)</a></dt>
+<dd>Cherry-pick a commit from a fork on GitHub.</dd>
+<dt><a href="./hub-clone.1.html">hub-clone(1)</a></dt>
+<dd>Clone a repository from GitHub.</dd>
+<dt><a href="./hub-fetch.1.html">hub-fetch(1)</a></dt>
+<dd>Add missing remotes prior to performing git fetch.</dd>
+<dt><a href="./hub-init.1.html">hub-init(1)</a></dt>
+<dd>Initialize a git repository and add a remote pointing to GitHub.</dd>
+<dt><a href="./hub-merge.1.html">hub-merge(1)</a></dt>
+<dd>Merge a pull request locally with a message like the GitHub Merge Button.</dd>
+<dt><a href="./hub-push.1.html">hub-push(1)</a></dt>
+<dd>Push a git branch to each of the listed remotes.</dd>
+<dt><a href="./hub-remote.1.html">hub-remote(1)</a></dt>
+<dd>Add a git remote for a GitHub repository.</dd>
+<dt><a href="./hub-submodule.1.html">hub-submodule(1)</a></dt>
+<dd>Add a git submodule for a GitHub repository.</dd>
+</dl>
+
+<h3 id="new-commands-provided-by-hub">New commands provided by hub</h3>
+
+<dl>
+<dt><a href="./hub-alias.1.html">hub-alias(1)</a></dt>
+<dd>Show shell instructions for wrapping git.</dd>
+<dt><a href="./hub-api.1.html">hub-api(1)</a></dt>
+<dd>Low-level GitHub API request interface.</dd>
+<dt><a href="./hub-browse.1.html">hub-browse(1)</a></dt>
+<dd>Open a GitHub repository in a web browser.</dd>
+<dt><a href="./hub-ci-status.1.html">hub-ci-status(1)</a></dt>
+<dd>Display status of GitHub checks for a commit.</dd>
+<dt><a href="./hub-compare.1.html">hub-compare(1)</a></dt>
+<dd>Open a GitHub compare page in a web browser.</dd>
+<dt><a href="./hub-create.1.html">hub-create(1)</a></dt>
+<dd>Create a new repository on GitHub and add a git remote for it.</dd>
+<dt><a href="./hub-delete.1.html">hub-delete(1)</a></dt>
+<dd>Delete a repository on GitHub.</dd>
+<dt><a href="./hub-fork.1.html">hub-fork(1)</a></dt>
+<dd>Fork the current repository on GitHub and add a git remote for it.</dd>
+<dt><a href="./hub-gist.1.html">hub-gist(1)</a></dt>
+<dd>Create and print GitHub Gists.</dd>
+<dt><a href="./hub-pull-request.1.html">hub-pull-request(1)</a></dt>
+<dd>Create a GitHub Pull Request.</dd>
+<dt><a href="./hub-pr.1.html">hub-pr(1)</a></dt>
+<dd>Manage GitHub Pull Requests for the current repository.</dd>
+<dt><a href="./hub-issue.1.html">hub-issue(1)</a></dt>
+<dd>Manage GitHub Issues for the current repository.</dd>
+<dt><a href="./hub-release.1.html">hub-release(1)</a></dt>
+<dd>Manage GitHub Releases for the current repository.</dd>
+<dt><a href="./hub-sync.1.html">hub-sync(1)</a></dt>
+<dd>Fetch git objects from upstream and update local branches.</dd>
+</dl>
+
+<h2 id="conventions">Conventions</h2>
+
+<p>Most hub commands are supposed to be run in a context of an existing local git
+repository. Hub will automatically detect the GitHub repository that the current
+working directory belongs to by scanning its git remotes.</p>
+
+<p>In case there are multiple git remotes that are all pointing to GitHub, hub
+assumes that the main one is named &quot;upstream&quot;, &quot;github&quot;, or &quot;origin&quot;, in that
+order of preference.</p>
+
+<p>When working with forks, it's recommended that the git remote for your own fork
+is named &quot;origin&quot; and that the git remote for the upstream repository is named
+&quot;upstream&quot;. See <a href="https://help.github.com/articles/configuring-a-remote-for-a-fork/">https://help.github.com/articles/configuring-a-remote-for-a-fork/</a></p>
+
+<p>The default branch (usually &quot;master&quot;) for the current repository is detected
+like so:</p>
+
+<pre><code>git symbolic-ref refs/remotes/origin/HEAD
+</code></pre>
+
+<p>where <var>origin</var> is the name of the git remote for the upstream repository.</p>
+
+<p>The destination where the currently checked out branch is considered to be
+pushed to depends on the <code>git config push.default</code> setting. If the value is
+&quot;upstream&quot; or &quot;tracking&quot;, the tracking information for a branch is read like so:</p>
+
+<pre><code>git rev-parse --symbolic-full-name BRANCH@{upstream}
+</code></pre>
+
+<p>Otherwise, hub scans git remotes to find the first one for which
+<code>refs/remotes/REMOTE/BRANCH</code> exists. The &quot;origin&quot;, &quot;github&quot;, and &quot;upstream&quot;
+remotes are searched last because hub assumes that it's more likely that the
+current branch is pushed to your fork rather than to the canonical repo.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<h3 id="github-oauth-authentication">GitHub OAuth authentication</h3>
+
+<p>Hub will prompt for GitHub username &amp; password the first time it needs to access
+the API and exchange it for an OAuth token, which it saves in <code>~/.config/hub</code>.</p>
+
+<p>To avoid being prompted, use <code>GITHUB_USER</code> and <code>GITHUB_PASSWORD</code> environment
+variables.</p>
+
+<p>Alternatively, you may provide <code>GITHUB_TOKEN</code>, an access token with
+<strong>repo</strong> permissions. This will not be written to <code>~/.config/hub</code>.</p>
+
+<h3 id="https-instead-of-git-protocol">HTTPS instead of git protocol</h3>
+
+<p>If you prefer the HTTPS protocol for git operations, you can configure hub to
+generate all URLs with <code>https:</code> instead of <code>git:</code> or <code>ssh:</code>:</p>
+
+<pre><code>$ git config --global hub.protocol https
+</code></pre>
+
+<p>This will affect <code>clone</code>, <code>fork</code>, <code>remote add</code> and other hub commands that
+expand shorthand references to GitHub repo URLs.</p>
+
+<h3 id="github-enterprise">GitHub Enterprise</h3>
+
+<p>By default, hub will only work with repositories that have remotes which
+point to <code>github.com</code>. GitHub Enterprise hosts need to be whitelisted to
+configure hub to treat such remotes same as github.com:</p>
+
+<pre><code>$ git config --global --add hub.host MY.GIT.ORG
+</code></pre>
+
+<p>The default host for commands like <code>init</code> and <code>clone</code> is still <code>github.com</code>, but
+this can be affected with the <code>GITHUB_HOST</code> environment variable:</p>
+
+<pre><code>$ GITHUB_HOST=my.git.org git clone myproject
+</code></pre>
+
+<h3 id="environment-variables">Environment variables</h3>
+
+<dl>
+<dt><code>HUB_VERBOSE</code></dt>
+<dd>If this environment variable is set, verbose logging will be printed to
+stderr.</dd>
+<dt><code>HUB_CONFIG</code></dt>
+<dd>The file path where hub configuration is read from and stored. If
+<code>XDG_CONFIG_HOME</code> is present, the default is <code>$XDG_CONFIG_HOME/hub</code>;
+otherwise it's <code>$HOME/.config/hub</code>. The configuration file is also
+searched for in <code>XDG_CONFIG_DIRS</code> per XDG Base Directory Specification.</dd>
+<dt><code>HUB_PROTOCOL</code></dt>
+<dd>One of &quot;https&quot;, &quot;ssh&quot;, or &quot;git&quot; as preferred protocol for git clone/push.</dd>
+<dt><code>GITHUB_HOST</code></dt>
+<dd>The GitHub hostname to default to instead of &quot;github.com&quot;.</dd>
+<dt><code>GITHUB_TOKEN</code></dt>
+<dd>OAuth token to use for GitHub API requests.</dd>
+<dt><code>GITHUB_USER</code></dt>
+<dd>The GitHub username of the actor of GitHub API operations.</dd>
+<dt><code>GITHUB_PASSWORD</code></dt>
+<dd>The GitHub password used to exchange user credentials for an OAuth token
+that gets stored in hub configuration. If not set, it may be interactively
+prompted for on first run.</dd>
+<dt><code>GITHUB_REPOSITORY</code></dt>
+<dd>A value in &quot;OWNER/REPO&quot; format that specifies the repository that API
+operations should be performed against. Currently only used to infer the
+default value of <code>GITHUB_USER</code> for API requests.</dd>
+</dl>
+
+<h2 id="bugs">Bugs</h2>
+
+<p><a href="https://github.com/github/hub/issues">https://github.com/github/hub/issues</a></p>
+
+<h2 id="authors">Authors</h2>
+
+<p><a href="https://github.com/github/hub/contributors">https://github.com/github/hub/contributors</a></p>
+
+<h2 id="see-also">See also</h2>
+
+<p>git(1), git-clone(1), git-remote(1), git-init(1),
+<a href="https://github.com/github/hub">https://github.com/github/hub</a></p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

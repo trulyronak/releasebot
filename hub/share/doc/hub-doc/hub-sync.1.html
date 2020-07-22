@@ -1,0 +1,120 @@
+<!doctype html>
+<title>hub-sync(1) - Fetch git objects from upstream and update local branches.</title>
+<meta charset="utf-8">
+
+<style>
+body {
+  margin: 0;
+  font: 15px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+}
+pre, code, var, dt, .man-head, [id="synopsis"] + p {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+header, footer {
+  padding: .5em 2em;
+}
+.man-head {
+  color: #999;
+  padding: 0;
+  width: 100%;
+  float: left;
+  list-style-type: none;
+}
+header .man-head {
+  text-transform: uppercase;
+}
+.man-head li {
+  width: 33%;
+  float: left;
+}
+.tl { text-align: left }
+.tc { text-align: center }
+.tr { text-align: right; float: right }
+article {
+  max-width: 110ex;
+  margin: 4em auto 2em;
+}
+h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+h2 {
+  text-transform: uppercase;
+}
+code {
+  color: darkslategray;
+  font-weight: bold;
+}
+var {
+  color: orangered;
+  font-weight: normal;
+  font-style: normal;
+}
+dt {
+  margin: .5em 0;
+}
+dd {
+  margin-bottom: 1em;
+}
+pre, [id="synopsis"] + p {
+  background: #eee;
+  padding: 1em 1.5em;
+}
+[id="synopsis"] + p {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+pre code {
+  color: inherit;
+  font-weight: inherit;
+}
+var::before { content: "<" }
+var::after { content: ">" }
+a:link, a:hover, a:visited { color: blue }
+</style>
+
+<header>
+  <ol class="man-head">
+    <li class="tl">hub-sync(1)</li>
+    <li class="tc">hub manual</li>
+    <li class="tr">hub-sync(1)</li>
+  </ol>
+</header>
+
+<article>
+  <h1>Fetch git objects from upstream and update local branches.</h1>
+  
+<h2 id="synopsis">Synopsis</h2>
+
+<p><code>hub sync</code> [--color]</p>
+
+<ul>
+<li>If the local branch is outdated, fast-forward it;</li>
+<li>If the local branch contains unpushed work, warn about it;</li>
+<li>If the branch seems merged and its upstream branch was deleted, delete it.</li>
+</ul>
+
+<p>If a local branch does not have any upstream configuration, but has a
+same-named branch on the remote, treat that as its upstream branch.</p>
+
+<h2 id="options">Options</h2>
+
+<dl>
+<dt>--color[=<var>WHEN</var>]</dt>
+<dd>Enable colored output even if stdout is not a terminal. <var>WHEN</var> can be one
+of &quot;always&quot; (default for <code>--color</code>), &quot;never&quot;, or &quot;auto&quot; (default).</dd>
+</dl>
+
+<h2 id="see-also">See also</h2>
+
+<p><a href="./hub.1.html">hub(1)</a>, git-fetch(1)</p>
+
+</article>
+
+<footer>
+  <ol class="man-head">
+    <li class="tl">hub version 2.14.2</li>
+    <li class="tc">05 Mar 2020</li>
+    <li class="tr"></li>
+  </ol>
+</footer>

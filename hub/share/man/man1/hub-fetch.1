@@ -1,0 +1,23 @@
+.TH "hub-fetch" "1" "05 Mar 2020" "hub version 2.14.2" "hub manual"
+.nh
+.ad l
+.SH "NAME"
+hub\-fetch \- Add missing remotes prior to performing git fetch.
+.SH "SYNOPSIS"
+.P
+\fB\fChub fetch\fR \fIUSER\fP[,\fIUSER2\fP...]
+.SH "EXAMPLES"
+.PP
+.RS 4
+.nf
+$ hub fetch \-\-multiple jingweno mislav
+> git remote add jingweno git://github.com/jingweno/REPO.git
+> git remote add mislav git://github.com/mislav/REPO.git
+> git fetch jingweno
+> git fetch mislav
+.fi
+.RE
+.SH "SEE ALSO"
+.P
+hub\-remote(1), hub(1), git\-fetch(1)
+

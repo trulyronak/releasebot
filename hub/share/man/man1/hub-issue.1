@@ -1,0 +1,222 @@
+.TH "hub-issue" "1" "05 Mar 2020" "hub version 2.14.2" "hub manual"
+.nh
+.ad l
+.SH "NAME"
+hub\-issue \- Manage GitHub Issues for the current repository.
+.SH "SYNOPSIS"
+.P
+\fB\fChub issue\fR [\-a \fIASSIGNEE\fP] [\-c \fICREATOR\fP] [\-@ \fIUSER\fP] [\-s \fISTATE\fP] [\-f \fIFORMAT\fP] [\-M \fIMILESTONE\fP] [\-l \fILABELS\fP] [\-d \fIDATE\fP] [\-o \fISORT\_KEY\fP [\fB\fC\-^\fR]] [\-L \fILIMIT\fP]
+.br
+\fB\fChub issue\fR show [\-f \fIFORMAT\fP] \fINUMBER\fP
+.br
+\fB\fChub issue\fR create [\-oc] [\-m \fIMESSAGE\fP|\-F \fIFILE\fP] [\-\-edit] [\-a \fIUSERS\fP] [\-M \fIMILESTONE\fP] [\-l \fILABELS\fP]
+.br
+\fB\fChub issue\fR update \fINUMBER\fP [\-m \fIMESSAGE\fP|\-F \fIFILE\fP] [\-\-edit] [\-a \fIUSERS\fP] [\-M \fIMILESTONE\fP] [\-l \fILABELS\fP] [\-s \fISTATE\fP]
+.br
+\fB\fChub issue\fR labels [\-\-color]
+.br
+\fB\fChub issue\fR transfer \fINUMBER\fP \fIREPO\fP
+.SH "COMMANDS"
+.P
+With no arguments, show a list of open issues.
+.PP
+\fIshow\fP
+.RS 4
+Show an existing issue specified by \fINUMBER\fP.
+.RE
+.PP
+\fIcreate\fP
+.RS 4
+Open an issue in the current repository.
+.RE
+.PP
+\fIupdate\fP
+.RS 4
+Update fields of an existing issue specified by \fINUMBER\fP. Use \fB\fC\-\-edit\fR
+to edit the title and message interactively in the text editor.
+.RE
+.PP
+\fIlabels\fP
+.RS 4
+List the labels available in this repository.
+.RE
+.PP
+\fItransfer\fP
+.RS 4
+Transfer an issue to another repository.
+.RE
+.br
+.SH "OPTIONS"
+.PP
+\-a, \-\-assignee \fIASSIGNEE\fP
+.RS 4
+In list mode, display only issues assigned to \fIASSIGNEE\fP.
+.RE
+.PP
+\-a, \-\-assign \fIUSERS\fP
+.RS 4
+A comma\-separated list of GitHub handles to assign to the created issue.
+.RE
+.PP
+\-c, \-\-creator \fICREATOR\fP
+.RS 4
+Display only issues created by \fICREATOR\fP.
+.RE
+.PP
+\-@, \-\-mentioned \fIUSER\fP
+.RS 4
+Display only issues mentioning \fIUSER\fP.
+.RE
+.PP
+\-s, \-\-state \fISTATE\fP
+.RS 4
+Display issues with state \fISTATE\fP (default: "open").
+.RE
+.PP
+\-f, \-\-format \fIFORMAT\fP
+.RS 4
+Pretty print the contents of the issues using format \fIFORMAT\fP (default:
+"%sC%>(8)%i%Creset  %t%  l%n"). See the "PRETTY FORMATS" section of
+git\-log(1) for some additional details on how placeholders are used in
+format. The available placeholders for issues are:
+.sp
+%I: issue number
+.sp
+%i: issue number prefixed with "#"
+.sp
+%U: the URL of this issue
+.sp
+%S: state (i.e. "open", "closed")
+.sp
+%sC: set color to red or green, depending on issue state.
+.sp
+%t: title
+.sp
+%l: colored labels
+.sp
+%L: raw, comma\-separated labels
+.sp
+%b: body
+.sp
+%au: login name of author
+.sp
+%as: comma\-separated list of assignees
+.sp
+%Mn: milestone number
+.sp
+%Mt: milestone title
+.sp
+%NC: number of comments
+.sp
+%Nc: number of comments wrapped in parentheses, or blank string if zero.
+.sp
+%cD: created date\-only (no time of day)
+.sp
+%cr: created date, relative
+.sp
+%ct: created date, UNIX timestamp
+.sp
+%cI: created date, ISO 8601 format
+.sp
+%uD: updated date\-only (no time of day)
+.sp
+%ur: updated date, relative
+.sp
+%ut: updated date, UNIX timestamp
+.sp
+%uI: updated date, ISO 8601 format
+.sp
+%n: newline
+.sp
+%%: a literal %
+.RE
+.PP
+\-\-color[=\fIWHEN\fP]
+.RS 4
+Enable colored output even if stdout is not a terminal. \fIWHEN\fP can be one
+of "always" (default for \fB\fC\-\-color\fR), "never", or "auto" (default).
+.RE
+.PP
+\-m, \-\-message \fIMESSAGE\fP
+.RS 4
+The text up to the first blank line in \fIMESSAGE\fP is treated as the issue
+title, and the rest is used as issue description in Markdown format.
+.sp
+When multiple \fB\fC\-\-message\fR are passed, their values are concatenated with a
+blank line in\-between.
+.sp
+When neither \fB\fC\-\-message\fR nor \fB\fC\-\-file\fR were supplied to \fB\fCissue create\fR, a
+text editor will open to author the title and description in.
+.RE
+.PP
+\-F, \-\-file \fIFILE\fP
+.RS 4
+Read the issue title and description from \fIFILE\fP. Pass "\-" to read from
+standard input instead. See \fB\fC\-\-message\fR for the formatting rules.
+.RE
+.PP
+\-e, \-\-edit
+.RS 4
+Open the issue title and description in a text editor before submitting.
+This can be used in combination with \fB\fC\-\-message\fR or \fB\fC\-\-file\fR.
+.RE
+.PP
+\-o, \-\-browse
+.RS 4
+Open the new issue in a web browser.
+.RE
+.PP
+\-c, \-\-copy
+.RS 4
+Put the URL of the new issue to clipboard instead of printing it.
+.RE
+.PP
+\-M, \-\-milestone \fINAME\fP
+.RS 4
+Display only issues for a GitHub milestone with the name \fINAME\fP.
+.sp
+When opening an issue, add this issue to a GitHub milestone with the name \fINAME\fP.
+Passing the milestone number is deprecated.
+.RE
+.PP
+\-l, \-\-labels \fILABELS\fP
+.RS 4
+Display only issues with certain labels.
+.sp
+When opening an issue, add a comma\-separated list of labels to this issue.
+.RE
+.PP
+\-d, \-\-since \fIDATE\fP
+.RS 4
+Display only issues updated on or after \fIDATE\fP in ISO 8601 format.
+.RE
+.PP
+\-o, \-\-sort \fIKEY\fP
+.RS 4
+Sort displayed issues by "created" (default), "updated" or "comments".
+.RE
+.PP
+\-^ \-\-sort\-ascending
+.RS 4
+Sort by ascending dates instead of descending.
+.RE
+.PP
+\-L, \-\-limit \fILIMIT\fP
+.RS 4
+Display only the first \fILIMIT\fP issues.
+.RE
+.PP
+\-\-include\-pulls
+.RS 4
+Include pull requests as well as issues.
+.RE
+.PP
+\-\-color
+.RS 4
+Enable colored output for labels list.
+.RE
+.br
+.SH "SEE ALSO"
+.P
+hub\-pr(1), hub(1)
+
