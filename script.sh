@@ -19,4 +19,4 @@ git remote remove $GITHUB_USER > /dev/null 2>&1 # remove fork so we can enable a
 git remote add $GITHUB_USER https://github.com/$GITHUB_USER/optic > /dev/null 2>&1 # only for testing
 git remote set-url $GITHUB_USER https://$GITHUB_USER:$GITHUB_TOKEN@github.com/$GITHUB_USER/optic.git > /dev/null 2>&1 # only for testing
 git push $GITHUB_USER releasebot/staged-release-$1 > /dev/null 2>&1
-$HUB_EXEC pull-request -m "Release $1" -b release
+$HUB_EXEC pull-request -m "Release $1" -b release -p

@@ -20,4 +20,4 @@ git remote add $GH_USERNAME https://github.com/$GH_USERNAME/optic  # only for te
 git pull $GH_USERNAME  # only for testing
 git remote set-url $GH_USERNAME https://$GH_USERNAME:$GH_PERSONAL_ACCESS_TOKEN@github.com/$GH_USERNAME/optic.git  # only for testing
 git push $GH_USERNAME releasebot/staged-release-$1 
-$HUB_EXEC pull-request -m "Release $1" -b release
+$HUB_EXEC pull-request -m "Release $1" -b release -p
