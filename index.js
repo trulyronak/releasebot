@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const http = require('http');
 const axios = require('axios');
 const execa = require('execa');
@@ -11,7 +10,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
 function isValid(string) {
-    // complex regex
+    // Makes sure the string matches the pattern of X.X.X
     return string.match(/^(\d+\.)?(\d+\.)?(\*|\d+)$/)
 }
 
@@ -31,7 +30,7 @@ app.post("/slack", async (req, res) => {
         const version = arguments
         const responseUrl = req.body.response_url;
 
-        res.send(`Received request to release version ${arguments}. Working on it right now`)
+        res.send(`Received request to release version ${version}. Working on it right now (Expect to hear back in ~5 minutes)`)
         
         // run script
         const {stdout} = await execa("bash", ["script.sh", version])
@@ -49,7 +48,7 @@ app.post("/slack", async (req, res) => {
 })
 
 app.get("/", (req, res) => {
-    res.send("get :O")
+    res.redirect("https://useoptic.com")
 })
 
 http.createServer(app).listen(process.env.OPTIC_API_PORT || process.env.PORT || 4000)
